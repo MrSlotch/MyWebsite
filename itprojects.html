@@ -1,0 +1,41 @@
+<html>
+<head>
+<!-- spencerWeb.html -->
+
+<title>IT Projects HomeLab</title>
+<head>
+
+<body>
+
+	<h1>HomeLab Projects</h1>
+	<h7><a href = "cyberchronicle.html">BACK</a>
+	<h4>NAS Server</h4>
+		<p>One of my first major projects was converting an old retired computer into a network attached storage. This is 100% a necessity for anyone who consistantly uses multiple devices and is tired of constantly trying to track what file is where, and how to get this file to that machine. The benefits are countless and I dont think I need to fully explain all of them and why, JUST DO IT! *if you havent already. It will change your quality of life.</p>
+
+		<p>-Step 1:
+			First you will need a computer. You dont need a top of the line rack mounted NAS; or even a pricy prebuilt multi bay system from the likes of Synology or QNAP. I was very suprised with how well my dated machine handled the traffic I was sending it, and im sure you will be too! The idea of creating a NAS started once I came across an old computer that someone had listed online for very cheap. The computer was a Lenovo ThinkCentre M93p, it come with at Intel i5-4570T and 8GB of RAM and no hardrive. I purchased the computer for a whole $20. I spent another $13 on a 240GB 2.5" SSD and $30 for a used 4TB external HDD. At this point my total price for the server was $63; and I would have 4TB of storage to work with! (I eventualy purchased 2 more drives and configured RAID 5 giving me 8TB of storage)(Click Here To Jump To RAID Configuration)</p>
+
+		<p>-Step 2:
+			Now that you have your computer you will need to decide what OS you will use. There are many available and the decision on which one to choose can be difficult. At this point I had very little knowledge on how to configure any of this and had never realy gone into Linux apart from seeing if I could set up a Linux virtual machine. So I knew I needed somthing with some sort of UI component but also allowed me to learn and didnt do everything for me. I settled on OpenMediaVault becuase it is 1.Free 2.Runs on Debian (Linux) 3.Open source and customizeable. The biggest factor to me was that it is very 'lighweight' and can run on even the weakest of computers; and I had no clue if/how well my computer would handle this and a future media server I had planned. Once you choose your operating system you will need to flash the OS image onto a drive; I used a USB drive and BalenaEtcher. Now just plug it into the 'naked' computer.</p>
+
+			<p>-Step 3: Installing OpenMediaVault (OMV) is pretty simple. After booting from the just created drive, you just have to follow the on-screen instructions to finish installing OMV on you system. Just make sure you are selecting the correct drive for installation; mine was the 240GB SSD. And configure the basic network settings, IP address, hostname, subnet, etc. Once that is finished you can now access the OMV web interface. This is where you will configure 90% of everything. After installation, access the OpenMediaVault web interface from another computer on the same network. Open a web browser and enter the IP address assigned to your NAS. The default username is admin and the password is openmediavault. You will want to change the default password for security, so that only you can access your server. Navigate to System > General Settings > Web Admistrator Password to change it.</p>
+
+			<p>-Step 4: Setting up storage devices is very simple on OMV. If you havent already make sure your storage drives are connected to your NAS. To check go to Storage > Disks to see the connected drives. Although you can see that the drive is recogonized you cannot use it yet because there is no file system on the drive. To create the file system you will need to go to Storage > Filesystems. Click on Create and select the disk you want to use and choose a filesystem type. I chose ext4 because it is a good choice for compatibility and performance. Then click Mount after the filesystem is created. You will need to do this for all the drives you plan on using. I would then quickly set up a shared folder. This is the starting directory that will eventualy hold branching folders containing anything you want stored on your NAS. Go to Access Rights Management > Shared Folders. Click on Add and ender a name for your shared folder. Select the filesystem and set the permissions as needed. {permission types} Repeat this for each shared folder you want to create.</p>
+
+			<p>-Step 5: You will now need to configure the network services. This allows other operating systems like Windows and macOS to access and communicate with the NAS. The service you will want to enable is SMB/CIFS. Windows uses SMB and CIFS protocol to send requests and recieve responses to shared resources on the same network. MacOS uses AFP for the same purpose. Go to Services > SMB/CIFS enable the service and configure the settings as required. Then enable AFP for macOS support.</p>
+
+			<p>-Step 6: You will now want to set up users and permissions for the shared folders. You probably wouldent want just anyone on your network to be able to freely access all of your data containg private information. To limit who is able to read, write or access any files on the NAS you first need to create users. Think of users as your ID to get into a secured building this usualy contains your name, and a password that allows you to access the shared folder. You can create as many users as you want, all with the same or different 'security clearances'. I personaly made 4 users. My user, my girlfriends user, and 2 different guest users.</p>
+
+			<p>Step 7: You will now want to secure access to the server. The most necessary protection method is to ensure all user accounts have strong passwords. You can enforce this threw 'system > General Settings > Web Adminstrator Password'. You can also configure firewall settings in Network > Firewall to set rules. You can also enable SSL/TLS if you wanted too for further security.</p>
+
+			<p>Step 8: Now is the final step! You now can test access from the different platforms. For windows go to the file explorer and type //(NAS_IP_ADDRESS) into the search bar. Then enter the username and passowrd for each user group to test if the permissions are correct. Do the same for macOS and iOS. MacOS = smb://(NAS_IP_ADDRESS) iOS = open FileBrowser app and connect to the NAS using the ip address.</p>
+
+			<p>Step 9: Congratulations! You now have a fully functioning NAS. Feel free to test different methods and fiddle around with settings as you please. There are alot of ways to set up a NAS and this was just the method that works best for me currently.</p>
+
+
+
+	<h4>Jellyfin Media Server</h4>
+		<p></p>
+
+</body>
+</html>
